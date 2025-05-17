@@ -1,0 +1,8 @@
+git
+zsh
+tmux
+alacritty
+rofi
+google-chrome-stable
+discord
+spotify
