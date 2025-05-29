@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -e
+
+_envs=(
+    HYPRLAND_INSTANCE_SIGNATURE
+    WAYLAND_DISPLAY
+    XDG_CURRENT_DESKTOP
+    XDG_SESSION_TYPE
+    DISPLAY
+    SSH_AUTH_SOCK
+)
+
+for var in "${_envs[@]}"; do
+    if [ -n "${!var}" ]; then
+        tmux setenv -g "$var" "${!var}"
+    fi
+done
+
