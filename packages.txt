@@ -11,3 +11,7 @@ blender
 1password
 godot
 steam
+gcc
+base-devel
+unzip
+nvim

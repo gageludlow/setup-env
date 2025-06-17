@@ -58,8 +58,10 @@ if testmode == false; then
   cp config/zsh/.zshrc ~/.zshrc
   cp -r config/waybar/ ~/.config/
   cp -r config/tmux/ ~/.config/
-  #TODO:set up reload-env scripts with symbolic links and add to path
   cp -r config/hypr/ ~/.config/
+  # nvim setup
+  cp -r config/nvim/init.lua ~/.config/nvim/
+  cp -r config/nvim/lua/ ~/.config/nvim/
   #TODO:add the nvim config copies, can't do the whole folder since it includes a git repo. should have the nvim/init.lua and the nvim/lua/custom/plugins/init.lua
 else
   echo "TESTMODE: Copy config dotfiles"
@@ -70,6 +72,17 @@ echo "Running additional setup scripts..."
 bash scripts/setup_zsh.sh
 #TODO:set up tmux import env so you can run reload-env
 bash scripts/setup_tmux.sh
+
+# Setup symbolic links
+TARGET = "$HOME/.local/bin/reload-env"
+SOURCE = "$HOME/.config/hypr/scripts/reload-env.sh"
+
+mkdir -p "$HOME/.local/bin/"
+
+  # Create symlink
+ln -s "$SOURCE" "$TARGET"
+
+echo 'Symbolic link Created for reload-env'
 
 echo 'Bootstrap complete.'
 
